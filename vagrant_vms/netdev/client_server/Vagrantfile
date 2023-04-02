@@ -1,0 +1,53 @@
+Vagrant.configure("2") do |config|
+  
+    #-------------------------VMs----------------------------
+    config.vm.define "client" do |client|
+      client.vm.box = "ubuntu/focal64"
+
+      #---------------------NETWORK-------------------------
+      client.vm.network "private_network", ip: "192.168.16.2"
+
+      #-------------------Sync folder-----------------------
+      client.vm.synced_folder "./client_data", "/vagrant"
+
+      #-------------------Resources-------------------------
+      client.vm.provider "virtualbox" do |vb|
+        #   # Display the VirtualBox GUI when booting the machine
+          vb.gui = true
+        #
+        #   # Customize the amount of memory on the VM:
+          vb.memory = "2048"
+          vb.cpus = 2
+        end
+      #-------------------PROVISION-----------------------------
+      client.vm.provision "shell", inline: <<-SHELL
+        sudo apt update
+      SHELL
+    end
+  
+    config.vm.define "server" do |server|
+      server.vm.box = "ubuntu/focal64"
+      #---------------------NETWORK-------------------------
+      server.vm.network "private_network", ip: "192.168.16.3"
+
+      #-------------------Sync folder-----------------------
+      server.vm.synced_folder "./server_data", "/vagrant"
+
+      #-------------------Resources-------------------------
+      server.vm.provider "virtualbox" do |vb|
+        #   # Display the VirtualBox GUI when booting the machine
+          vb.gui = false
+        #
+        #   # Customize the amount of memory on the VM:
+          vb.memory = "2048"
+          vb.cpus = 2
+        end
+        #
+      #-------------------PROVISION-----------------------------
+      server.vm.provision "shell", inline: <<-SHELL
+        sudo apt update
+        sudo apt install -y apache2
+      SHELL
+      
+    end
+end

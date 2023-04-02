@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  lazy-docker:
+    image: alpine:3.16
+    container_name: lazy-docker
+    env_file:
+      - .env
+    build:
+      context: .
+      args:
+        BASE_IMAGE_BUILDER: golang
+        GOARCH: amd64
+        GOARM:
+    stdin_open: true
+    tty: true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./data:/.config/jesseduffield/lazydocker
+    

@@ -1,0 +1,12 @@
+FROM quay.io/centos/centos:8
+
+RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+
+RUN dnf -y update
+RUN dnf -y install python3 \
+    git \
+    vim \
+    nano 
+
+CMD /bin/bash

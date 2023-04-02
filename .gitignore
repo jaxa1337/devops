@@ -1,0 +1,10 @@
+#==== Vagrant vms =====
+*.vagrant
+*.log
+
+#==== Docker containers =====
+*.pem
+*.pub
+*id_rsa
+*id_rsa.pub
+*provision/

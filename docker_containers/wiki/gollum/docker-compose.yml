@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  wiki:
+    image: genebarker/gollum
+    ports:
+      - 8888:80
+    volumes:
+      - ./provision/data/wiki:/root/wiki
+      - ./provision/keys/id_rsa:/etc/wiki/github.pem
+    command: --http

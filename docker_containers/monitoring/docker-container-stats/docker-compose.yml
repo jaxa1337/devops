@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  docker-stats:
+    image: virtualzone/docker-container-stats
+    container_name: docker-stats
+    ports:
+      - ${HOST_PORT}:8080
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /home/docker/storage/stats/db:/opt/docker-stats/db
+    

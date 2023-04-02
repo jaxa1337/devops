@@ -1,0 +1,20 @@
+
+version: '3.9'
+
+services:
+  php-nginx:
+    image: webdevops/php-nginx:7.2-alpine
+    container_name: webdevops-php-nginx
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./provision/nginx/vhost.conf:/opt/docker/etc/nginx/vhost.conf
+      - ./provision/nginx/10-php.conf:/opt/docker/etc/nginx/vhost.common.d/10-php.conf
+      - ./provision/nginx/10-location-root.conf:/opt/docker/etc/nginx/vhost.common.d/10-location-root.conf
+      - ./provision/entrypoints/:/entrypoint.d/
+    ports:
+      - 8094:80
+      - 8095:433
