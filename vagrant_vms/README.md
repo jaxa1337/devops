@@ -4,7 +4,7 @@ This repo contain some useful Vagrantfile for all popular machines with differen
 
 ## Description of individual machines
 - 
-## Repo structure
+## Dir structure
 
 ```
 .
