@@ -7,8 +7,8 @@ This repo contains simple Dockerfiles and docker-compose.yml for many apps which
 How to start? Just copy command and run container :D. 
 
 All containers are simple apps for testing some function etc.
-
-1. DB:
+___
+1. __DB:__
     - __Mariadb__
         ```shell
         start$ docker compose -f ./db/mariadb/docker-compose.yml --env-file ./db/mariadb/.env up -d --remove-orphans --no-deps
@@ -31,7 +31,8 @@ All containers are simple apps for testing some function etc.
 
         stop$ docker compose -f ./db/postgres/docker-compose.yml down
         ```
-2. Linux:
+___
+2. __Linux:__
     - __Centos7__
         ```shell
         start$ docker run --rm -it -v $(pwd)/linux/centos/7/data:/data --env-file ./linux/centos/7/.env --name centos-7 $(docker build -q -f linux/centos/7/Dockerfile -t centos7 .)
@@ -79,15 +80,15 @@ All containers are simple apps for testing some function etc.
 
         stop$ Just Ctrl+C or exit
         ```
-
-3. Python:
+___
+3. __Python:__
     - __3.6.8__
 
         ```shell
         start$ docker run --rm --name python3.6.8 -it $(docker build -q -f python/3.6.8/Dockerfile -t python3.6.8 .)
         ```
-
-4. Monitoring:
+___
+4. __Monitoring:__
     - Docker Container Stats:
 
         Use Docker Compose:
@@ -120,7 +121,8 @@ All containers are simple apps for testing some function etc.
 
         stop$ docker compose -f ./monitoring/lazy-docker/docker-compose.yml down
         ```
-5. PHP
+___
+5. __PHP__
     - WebDevOps php-nginx-apline
 
         Use DockerCompose:
@@ -129,23 +131,19 @@ All containers are simple apps for testing some function etc.
         
         stop$ docker compose -f ./php/webdevops/php-nginx/apline/docker-compose.yml down
         ```
-
-6. Wiki
+___
+6. __Wiki__
     - Wiki.JS
-
-        ```shell
-        start$ docker compose -f ./wiki/wiki.js/docker-compose.yml up -d --build --remove-orphans --no-deps
+        - start: `docker compose -f ./docker_containers/wiki/wiki.js/docker-compose.yml up -d --build --remove-orphans --no-deps`
         
-        stop$ docker compose -f ./wiki/wiki.js/docker-compose.yml down
-        ```
+        - stop: `docker compose -f ./docker_containers/wiki/wiki.js/docker-compose.yml down`
 
     - Gollum
-
-        ```shell
-        start$ docker compose -f ./wiki/gollum/docker-compose.yml up -d --build --remove-orphans --no-deps
-        
-        stop$ docker compose -f ./wiki/gollum/docker-compose.yml down
-        ```
-## Author
-
-    - Jakub Kabat - github:jaxa1337
+        - start: `docker compose -f ./docker_containers/wiki/gollum/docker-compose.yml up -d --build --remove-orphans --no-deps`
+        - stop: `docker compose -f ./docker_containers/wiki/gollum/docker-compose.yml down`
+___
+7. __Jenkins__
+   - start: `docker compose -f ./docker_containers/jenkins/docker-compose.yml up -d --build --remove-orphans --no-deps`
+   - stop: `docker compose -f ./docker_containers/jenkins/docker-compose.yml down`
+   - logs: `docker compose -f ./docker_containers/jenkins/docker-compose.yml logs --tail 20 -f`
+___
