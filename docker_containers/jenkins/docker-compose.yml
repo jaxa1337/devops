@@ -12,11 +12,12 @@ volumes:
 services:
   jenkins:
     image: jenkins/jenkins:2.387.1
+    restart: always
     build:
       dockerfile: Dockerfile
       context: .
     environment:
-      - DOKCER_HOST=tcp://docker-jenkins:2376
+      - DOCKER_HOST=tcp://docker:2376
       - DOCKER_CERT_PATH=/certs/client
       - DOCKER_TLS_VERIFY=1
     ports:
@@ -30,6 +31,7 @@ services:
 
   docker-daemon:
     image: docker:dind
+    restart: always
     privileged: true
     environment:
       - DOCKER_TLS_CERTDIR=/certs
@@ -41,5 +43,5 @@ services:
     networks:
       jenkins:
         aliases:
-          - docker-jenkins
+          - docker
       

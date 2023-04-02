@@ -146,4 +146,5 @@ ___
    - start: `docker compose -f ./docker_containers/jenkins/docker-compose.yml up -d --build --remove-orphans --no-deps`
    - stop: `docker compose -f ./docker_containers/jenkins/docker-compose.yml down`
    - logs: `docker compose -f ./docker_containers/jenkins/docker-compose.yml logs --tail 20 -f`
+   - bash jenkins: `docker compose -f ./docker_containers/jenkins/docker-compose.yml exec -it jenkins bash`
 ___
