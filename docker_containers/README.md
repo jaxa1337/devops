@@ -156,6 +156,7 @@ ___
     - start: `docker compose -f ./docker_containers/sonatype/nexus3/docker-compose.yml up -d --remove-orphans --no-deps`
     - stop: `docker compose -f ./docker_containers/sonatype/nexus3/docker-compose.yml down`
     - logs: `docker compose -f ./docker_containers/sonatype/nexus3/docker-compose.yml logs`
+    - show default pass: `docker exec nexus3-nexus3-1 cat /opt/sonatype/sonatype-work/nexus3/admin.password`
 ___
 
 1. __Sonarqube__
