@@ -4,9 +4,12 @@
 
 This repo contains simple Dockerfiles and docker-compose.yml for many apps which I used. 
 
-How to start? Just copy command and run container :D. 
-
 All containers are simple apps for testing some function etc.
+
+Simple commands:
+- START -> `docker-compose -f ./path/to/docker-compose.yml up -d --remove-orphans --no-deps`
+- STOP -> `docker-compose -f ./path/to/docker-compose.yml down`
+- LOGS -> `docker-compose -f ./path/to/docker-compose.yml logs`
 ___
 1. __DB:__
     - __Mariadb__
@@ -32,7 +35,7 @@ ___
         stop$ docker compose -f ./db/postgres/docker-compose.yml down
         ```
 ___
-2. __Linux:__
+1. __Linux:__
     - __Centos7__
         ```shell
         start$ docker run --rm -it -v $(pwd)/linux/centos/7/data:/data --env-file ./linux/centos/7/.env --name centos-7 $(docker build -q -f linux/centos/7/Dockerfile -t centos7 .)
@@ -81,14 +84,14 @@ ___
         stop$ Just Ctrl+C or exit
         ```
 ___
-3. __Python:__
+1. __Python:__
     - __3.6.8__
 
         ```shell
         start$ docker run --rm --name python3.6.8 -it $(docker build -q -f python/3.6.8/Dockerfile -t python3.6.8 .)
         ```
 ___
-4. __Monitoring:__
+1. __Monitoring:__
     - Docker Container Stats:
 
         Use Docker Compose:
@@ -122,7 +125,7 @@ ___
         stop$ docker compose -f ./monitoring/lazy-docker/docker-compose.yml down
         ```
 ___
-5. __PHP__
+1. __PHP__
     - WebDevOps php-nginx-apline
 
         Use DockerCompose:
@@ -132,7 +135,7 @@ ___
         stop$ docker compose -f ./php/webdevops/php-nginx/apline/docker-compose.yml down
         ```
 ___
-6. __Wiki__
+1. __Wiki__
     - Wiki.JS
         - start: `docker compose -f ./docker_containers/wiki/wiki.js/docker-compose.yml up -d --build --remove-orphans --no-deps`
         
@@ -142,9 +145,19 @@ ___
         - start: `docker compose -f ./docker_containers/wiki/gollum/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./docker_containers/wiki/gollum/docker-compose.yml down`
 ___
-7. __Jenkins__
+1. __Jenkins__
    - start: `docker compose -f ./docker_containers/jenkins/docker-compose.yml up -d --build --remove-orphans --no-deps`
    - stop: `docker compose -f ./docker_containers/jenkins/docker-compose.yml down`
    - logs: `docker compose -f ./docker_containers/jenkins/docker-compose.yml logs --tail 20 -f`
    - bash jenkins: `docker compose -f ./docker_containers/jenkins/docker-compose.yml exec -it jenkins bash`
 ___
+
+1. __Nexus3__
+    - start: `docker compose -f ./docker_containers/sonatype/nexus3/docker-compose.yml up -d --build --remove-orphans --no-deps`
+    - stop: `docker compose -f ./docker_containers/sonatype/nexus3/docker-compose.yml down`
+    - logs: `docker compose -f ./docker_containers/sonatype/nexus3/docker-compose.yml logs`
+___
+
+1. __Sonarqube__
+    - start: `docker compose -f ./docker_containers/sonarqube/docker-compose.yml up -d --build --remove-orphans --no-deps`
+    - stop: `docker compose -f ./docker_containers/sonarqube/docker-compose.yml logs`

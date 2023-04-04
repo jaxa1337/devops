@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  nexus3:
+    image: sonatype/nexus3:3.50.0
+    ports:
+     - 8081:8081
+    restart: always
+
+

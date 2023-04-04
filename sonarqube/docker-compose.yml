@@ -1,0 +1,19 @@
+version: "3.9"
+
+volumes:
+  sonarqube-data:
+  sonarqube-logs:
+  sonarqube-plugins:
+
+services:
+  sonarqube:
+    image: sonarqube:10.0-community
+    build:
+      dockerfile: Dockerfile
+      context: .
+    # ports:
+    #   - hostPORT:containerPort
+    volumes:
+      - sonarqube-data:/opt/sonarqube/data
+      - sonarqube-logs:/opt/sonarqube/logs
+      - sonarqube-plugins:/opt/sonarqube/extensions
