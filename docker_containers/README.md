@@ -35,7 +35,7 @@ ___
         stop$ docker compose -f ./db/postgres/docker-compose.yml down
         ```
 ___
-1. __Linux:__
+2. __Linux:__
     - __Centos7__
         ```shell
         start$ docker run --rm -it -v $(pwd)/linux/centos/7/data:/data --env-file ./linux/centos/7/.env --name centos-7 $(docker build -q -f linux/centos/7/Dockerfile -t centos7 .)
@@ -84,14 +84,14 @@ ___
         stop$ Just Ctrl+C or exit
         ```
 ___
-1. __Python:__
+3. __Python:__
     - __3.6.8__
 
         ```shell
         start$ docker run --rm --name python3.6.8 -it $(docker build -q -f python/3.6.8/Dockerfile -t python3.6.8 .)
         ```
 ___
-1. __Monitoring:__
+4. __Monitoring:__
     - Docker Container Stats:
 
         Use Docker Compose:
@@ -125,7 +125,7 @@ ___
         stop$ docker compose -f ./monitoring/lazy-docker/docker-compose.yml down
         ```
 ___
-1. __PHP__
+5. __PHP__
     - WebDevOps php-nginx-apline
 
         Use DockerCompose:
@@ -135,7 +135,7 @@ ___
         stop$ docker compose -f ./php/webdevops/php-nginx/apline/docker-compose.yml down
         ```
 ___
-1. __Wiki__
+6. __Wiki__
     - Wiki.JS
         - start: `docker compose -f ./docker_containers/wiki/wiki.js/docker-compose.yml up -d --build --remove-orphans --no-deps`
         
@@ -145,19 +145,19 @@ ___
         - start: `docker compose -f ./docker_containers/wiki/gollum/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./docker_containers/wiki/gollum/docker-compose.yml down`
 ___
-1. __Jenkins__
+7. __Jenkins__
    - start: `docker compose -f ./docker_containers/jenkins/docker-compose.yml up -d --build --remove-orphans --no-deps`
    - stop: `docker compose -f ./docker_containers/jenkins/docker-compose.yml down`
    - logs: `docker compose -f ./docker_containers/jenkins/docker-compose.yml logs --tail 20 -f`
    - bash jenkins: `docker compose -f ./docker_containers/jenkins/docker-compose.yml exec -it jenkins bash`
 ___
 
-1. __Nexus3__
-    - start: `docker compose -f ./docker_containers/sonatype/nexus3/docker-compose.yml up -d --build --remove-orphans --no-deps`
+8. __Nexus3__
+    - start: `docker compose -f ./docker_containers/sonatype/nexus3/docker-compose.yml up -d --remove-orphans --no-deps`
     - stop: `docker compose -f ./docker_containers/sonatype/nexus3/docker-compose.yml down`
     - logs: `docker compose -f ./docker_containers/sonatype/nexus3/docker-compose.yml logs`
 ___
 
 1. __Sonarqube__
-    - start: `docker compose -f ./docker_containers/sonarqube/docker-compose.yml up -d --build --remove-orphans --no-deps`
+    - start: `docker compose -f ./docker_containers/sonarqube/docker-compose.yml up -d --remove-orphans --no-deps`
     - stop: `docker compose -f ./docker_containers/sonarqube/docker-compose.yml logs`
