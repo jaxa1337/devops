@@ -25,7 +25,7 @@ sudo mkdir -p /opt/promtail
 sudo unzip $PACKAGE_PATH -d /opt/promtail/
 sudo mv /opt/promtail/promtail-linux-amd64 $SERVICE_PATH
 sudo chmod a+x $SERVICE_PATH
-sudo ln -s $SERVICE_PATH /usr/local/bin/promtail
+sudo ln -sf $SERVICE_PATH /usr/local/bin/promtail
 sudo cp /vagrant_data/promtail/promtail.service /etc/systemd/system/promtail.service
 sudo service promtail start
 sudo systemctl enable promtail 

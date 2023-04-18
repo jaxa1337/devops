@@ -25,7 +25,7 @@ sudo mkdir -p /opt/loki
 sudo unzip $PACKAGE_PATH -d /opt/loki/
 sudo mv /opt/loki/loki-linux-amd64 $SERVICE_PATH
 sudo chmod a+x $SERVICE_PATH
-sudo ln -s $SERVICE_PATH /usr/local/bin/loki
+sudo ln -sf $SERVICE_PATH /usr/local/bin/loki
 sudo cp /vagrant_data/loki/loki.service /etc/systemd/system/loki.service
 sudo service loki start
 sudo systemctl enable loki
