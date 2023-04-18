@@ -68,38 +68,10 @@ Vagrant.configure("2") do |config|
     apt-get update
     apt-get install -y ca-certificates curl gnupg unzip apt-transport-https software-properties-common wget
     install -m 0755 -d /etc/apt/keyrings
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-    sudo wget -q -O /usr/share/keyrings/grafana.key https://apt.grafana.com/gpg.key
-    chmod a+r /etc/apt/keyrings/docker.gpg
-    echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
-    echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
-    apt-get update
-    apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin grafana
-    # sudo systemctl enable docker
-    # sudo systemctl start docker
-    usermod -aG docker vagrant
-    sudo curl -o /vagrant_data/promtail/promtail-linux-amd64.zip -LO "https://github.com/grafana/loki/releases/download/v2.8.0/promtail-linux-amd64.zip"
-    sudo curl -o /vagrant_data/promtail/promtail-local-config.yaml "https://raw.githubusercontent.com/grafana/loki/v2.8.0/clients/cmd/promtail/promtail-local-config.yaml"
-    sudo curl -o /vagrant_data/loki/loki-linux-amd64.zip -LO "https://github.com/grafana/loki/releases/download/v2.8.0/loki-linux-amd64.zip"
-    sudo curl -o /vagrant_data/loki/loki-local-config.yaml "https://raw.githubusercontent.com/grafana/loki/v2.8.0/cmd/loki/loki-local-config.yaml"
-    sudo mkdir -p /opt/loki
-    sudo mkdir -p /opt/promtail
-    sudo unzip /vagrant_data/promtail/promtail-linux-amd64.zip -d /opt/promtail/
-    sudo unzip /vagrant_data/loki/loki-linux-amd64.zip -d /opt/loki/
-    sudo mv /opt/promtail/promtail-linux-amd64 /opt/promtail/promtail
-    sudo mv /opt/loki/loki-linux-amd64 /opt/loki/loki
-    sudo chmod a+x /opt/promtail/promtail
-    sudo chmod a+x /opt/loki/loki
-    sudo ln -s /opt/promtail/promtail /usr/local/bin/promtail
-    sudo ln -s /opt/loki/loki /usr/local/bin/loki
-    sudo cp /vagrant_data/loki/loki.service /etc/systemd/system/loki.service
-    sudo cp /vagrant_data/promtail/promtail.service /etc/systemd/system/promtail.service
-    sudo service loki start
-    sudo service promtail start
-    sudo systemctl enable loki
-    sudo systemctl enable promtail 
     sudo systemctl daemon-reload
-    sudo systemctl start grafana-server
-    sudo systemctl enable grafana-server
   SHELL
+  # config.vm.provision "shell", path: "./data/docker/docker_install.sh"
+  config.vm.provision "shell", path: "./data/promtail/promtail_install.sh"
+  config.vm.provision "shell", path: "./data/loki/loki_install.sh"
+  config.vm.provision "shell", path: "./data/grafana/grafana_install.sh"
 end
