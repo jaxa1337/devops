@@ -1,0 +1,105 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure("2") do |config|
+  # The most common configuration options are documented and commented below.
+  # For a complete reference, please see the online documentation at
+  # https://docs.vagrantup.com.
+
+  # Every Vagrant development environment requires a box. You can search for
+  # boxes at https://vagrantcloud.com/search.
+  config.vm.box = "ubuntu/focal64"
+
+  # Disable automatic box update checking. If you disable this, then
+  # boxes will only be checked for updates when the user runs
+  # `vagrant box outdated`. This is not recommended.
+  # config.vm.box_check_update = false
+
+  # Create a forwarded port mapping which allows access to a specific port
+  # within the machine from a port on the host machine. In the example below,
+  # accessing "localhost:8080" will access port 80 on the guest machine.
+  # NOTE: This will enable public access to the opened port
+  # config.vm.network "forwarded_port", guest: 80, host: 8080
+
+  # Create a forwarded port mapping which allows access to a specific port
+  # within the machine from a port on the host machine and only allow access
+  # via 127.0.0.1 to disable public access
+  config.vm.network "forwarded_port", guest: 3000, host: 3000, host_ip: "127.0.0.1"
+
+  # Create a private network, which allows host-only access to the machine
+  # using a specific IP.
+  # config.vm.network "private_network", ip: "192.168.33.10"
+
+  # Create a public network, which generally matched to bridged network.
+  # Bridged networks make the machine appear as another physical device on
+  # your network.
+  # config.vm.network "public_network"
+
+  # Share an additional folder to the guest VM. The first argument is
+  # the path on the host to the actual folder. The second argument is
+  # the path on the guest to mount the folder. And the optional third
+  # argument is a set of non-required options.
+  config.vm.synced_folder "./data", "/vagrant_data"
+
+  # Provider-specific configuration so you can fine-tune various
+  # backing providers for Vagrant. These expose provider-specific options.
+  # Example for VirtualBox:
+  #
+  config.vm.provider "virtualbox" do |vb|
+    # Display the VirtualBox GUI when booting the machine
+    # vb.gui = true
+  
+    # Customize the amount of memory on the VM:
+    vb.memory = "4096"
+    vb.cpus = 4
+  end
+  #
+  # View the documentation for the provider you are using for more
+  # information on available options.
+
+  # Enable provisioning with a shell script. Additional provisioners such as
+  # Ansible, Chef, Docker, Puppet and Salt are also available. Please see the
+  # documentation for more information about their specific syntax and use.
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get update
+    apt-get install -y ca-certificates curl gnupg unzip apt-transport-https software-properties-common wget
+    install -m 0755 -d /etc/apt/keyrings
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    sudo wget -q -O /usr/share/keyrings/grafana.key https://apt.grafana.com/gpg.key
+    chmod a+r /etc/apt/keyrings/docker.gpg
+    echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+    echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
+    apt-get update
+    apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin grafana
+    # sudo systemctl enable docker
+    # sudo systemctl start docker
+    usermod -aG docker vagrant
+    sudo curl -o /vagrant_data/promtail/promtail-linux-amd64.zip -LO "https://github.com/grafana/loki/releases/download/v2.8.0/promtail-linux-amd64.zip"
+    sudo curl -o /vagrant_data/promtail/promtail-local-config.yaml "https://raw.githubusercontent.com/grafana/loki/v2.8.0/clients/cmd/promtail/promtail-local-config.yaml"
+    sudo curl -o /vagrant_data/loki/loki-linux-amd64.zip -LO "https://github.com/grafana/loki/releases/download/v2.8.0/loki-linux-amd64.zip"
+    sudo curl -o /vagrant_data/loki/loki-local-config.yaml "https://raw.githubusercontent.com/grafana/loki/v2.8.0/cmd/loki/loki-local-config.yaml"
+    sudo mkdir -p /opt/loki
+    sudo mkdir -p /opt/promtail
+    sudo unzip /vagrant_data/promtail/promtail-linux-amd64.zip -d /opt/promtail/
+    sudo unzip /vagrant_data/loki/loki-linux-amd64.zip -d /opt/loki/
+    sudo mv /opt/promtail/promtail-linux-amd64 /opt/promtail/promtail
+    sudo mv /opt/loki/loki-linux-amd64 /opt/loki/loki
+    sudo chmod a+x /opt/promtail/promtail
+    sudo chmod a+x /opt/loki/loki
+    sudo ln -s /opt/promtail/promtail /usr/local/bin/promtail
+    sudo ln -s /opt/loki/loki /usr/local/bin/loki
+    sudo cp /vagrant_data/loki/loki.service /etc/systemd/system/loki.service
+    sudo cp /vagrant_data/promtail/promtail.service /etc/systemd/system/promtail.service
+    sudo service loki start
+    sudo service promtail start
+    sudo systemctl enable loki
+    sudo systemctl enable promtail 
+    sudo systemctl daemon-reload
+    sudo systemctl start grafana-server
+    sudo systemctl enable grafana-server
+  SHELL
+end

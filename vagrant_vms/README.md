@@ -4,19 +4,11 @@ This repo contain some useful Vagrantfile for all popular machines with differen
 
 ## Description of individual machines
 - 
-## Dir structure
+## Repo structure
 
-```
-.
-├── centos8
-│   ├── Vagrantfile
-├── ubutn18_04
-│   ├── Vagrantfile
-│   └── 
-├── 
-└──
-```
 
+- grafana_loki_docker - vm with Grafana, Promtail, Loki on Ubuntu 20.04
+- 
 ## Docs
 - https://www.vagrantup.com/
 - https://developer.hashicorp.com/vagrant/docs
