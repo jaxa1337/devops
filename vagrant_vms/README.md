@@ -4,9 +4,10 @@ This repo contain some useful Vagrantfile for all popular machines with differen
 
 ## Description of individual machines
 - 
-## Repo structure
+## Vagrant vms structure
 
-
+- [simple linux](./simple_linux/) - simple, clean distros without additional software. Fastest to run if you need clean vm.
+- [bash scripting](./bash_scripting/)- runs 3 vm's (2 Centos9 and 1 Debian 11) in one private network. This stack of vms is useful for learning how to write/test scripts localy and remotely.
 - grafana_loki_docker - vm with Grafana, Promtail, Loki on Ubuntu 20.04
 - 
 ## Docs
