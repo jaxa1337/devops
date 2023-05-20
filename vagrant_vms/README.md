@@ -6,6 +6,7 @@ This repo contain some useful Vagrantfile for all popular machines with differen
 - 
 ## Vagrant vms structure
 
+- [ansible](./ansible/) - vms stack for testing ansible on few different machines. Main machine with preinstalled Ansible is on Ubuntu 22.04, second machine is Centos 9 server and last one is server with Debian 11.
 - [simple linux](./simple_linux/) - simple, clean distros without additional software. Fastest to run if you need clean vm.
 - [bash scripting](./bash_scripting/)- runs 3 vm's (2 Centos9 and 1 Debian 11) in one private network. This stack of vms is useful for learning how to write/test scripts localy and remotely.
 - [docker](./docker/) - vms with pre installed docker.
