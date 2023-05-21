@@ -2,9 +2,7 @@
 
 This repo contain some useful Vagrantfile for all popular machines with different configurations.
 
-## Description of individual machines
-- 
-## Vagrant vms structure
+## Description of individual machi
 
 - [ansible](./ansible/) - vms stack for testing ansible on few different machines. Main machine with preinstalled Ansible is on Ubuntu 22.04, second machine is Centos 9 server and last one is server with Debian 11.
 - [simple linux](./simple_linux/) - simple, clean distros without additional software. Fastest to run if you need clean vm.
