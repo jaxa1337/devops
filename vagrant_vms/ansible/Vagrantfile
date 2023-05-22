@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
       main.vm.network "private_network", ip: "192.168.10.2"
   
       main.vm.box_check_update = true
-      main.vm.synced_folder "./data", "/vagrant"
+      main.vm.synced_folder "./data", "/vagrant", create: true, owner: "vagrant", mount_option: ["dmode=777", "fmode=777"]
 
       main.vm.provider "virutalbox" do |vb|
         vb.memory = "2048"
@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
       main.vm.provision "shell", inline: <<-SHELL
         hostnamectl set-hostname main
         apt update
-        apt install -y ansible
+        apt install -y ansible sshpass
       SHELL
     end
   
@@ -27,8 +27,9 @@ Vagrant.configure("2") do |config|
       server_centos.vm.network "private_network", ip: "192.168.10.3"
   
       server_centos.vm.provision "shell", inline: <<-SHELL
-        hostnamectl set-hostname servercentos
-        # sed -i '/s/PasswordAuthentication no/PasswordAuthentication yes' /etc/ssh/sshd_config
+        hostnamectl set-hostname server_centos
+        sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+        systemctl restart sshd
       SHELL
     end
   
@@ -38,7 +39,7 @@ Vagrant.configure("2") do |config|
       server_debian.vm.network "private_network", ip: "192.168.10.4"
   
       server_debian.vm.provision "shell", inline: <<-SHELL
-        hostnamectl set-hostname server_centos
+        hostnamectl set-hostname server_debian
       SHELL
     end
   

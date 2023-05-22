@@ -9,10 +9,20 @@ clients:
   - url: http://localhost:3100/loki/api/v1/push
 
 scrape_configs:
-- job_name: system
-  static_configs:
-  - targets:
-      - localhost
+# - job_name: system
+#   static_configs:
+#   - targets:
+#       - localhost
+#     labels:
+#       job: varlogs
+#       __path__: /var/log/*log
+- job_name: syslog
+  syslog:
+    listen_address: 0.0.0.0:1514
+    idle_timeout: 60s
+    label_structured_data: yes
     labels:
-      job: varlogs
-      __path__: /var/log/*log
+      job: "syslog"
+  relabel_configs:
+    - source_labels: ['__syslog_message_hostname']
+      target_label: 'host'

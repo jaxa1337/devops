@@ -8,3 +8,6 @@
 *id_rsa
 *id_rsa.pub
 *provision/
+
+#==== VSCode ====
+.vscode
