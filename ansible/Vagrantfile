@@ -1,0 +1,49 @@
+Vagrant.configure("2") do |config|
+  
+    # MAIN vm with centos9, make and execute scripts here
+    config.vm.define "main" do |main|
+      main.vm.box = "generic/ubuntu2204"
+  
+      main.vm.network "private_network", ip: "192.168.10.2"
+  
+      main.vm.box_check_update = true
+      main.vm.synced_folder "./", "/vagrant", create: true, owner: "vagrant", mount_option: ["dmode=777", "fmode=777"]
+
+      main.vm.provider "virutalbox" do |vb|
+        vb.memory = "2048"
+        vb.cpus = 2
+      end
+  
+      main.vm.provision "shell", inline: <<-SHELL
+        hostnamectl set-hostname main
+        add-apt-repository --yes --update ppa:ansible/ansible
+        apt update
+        apt install -y ansible sshpass
+      SHELL
+    end
+  
+    config.vm.define "server_centos" do |server_centos|
+      server_centos.vm.box = "generic/centos9s"
+  
+      server_centos.vm.network "private_network", ip: "192.168.10.3"
+  
+      server_centos.vm.provision "shell", inline: <<-SHELL
+        hostnamectl set-hostname server_centos
+        sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+        systemctl restart sshd
+      SHELL
+    end
+  
+    config.vm.define "server_debian" do |server_debian|
+      server_debian.vm.box = "generic/debian11"
+  
+      server_debian.vm.network "private_network", ip: "192.168.10.4"
+  
+      server_debian.vm.provision "shell", inline: <<-SHELL
+        hostnamectl set-hostname server_debian
+      SHELL
+    end
+  
+    
+  end
+  
