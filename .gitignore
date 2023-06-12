@@ -11,3 +11,4 @@
 
 #==== VSCode ====
 .vscode
+ansible/ssh_keys
