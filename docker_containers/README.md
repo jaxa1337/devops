@@ -66,7 +66,7 @@ ___
 ___
 1. __Python:__
     - __3.6.8__
-        - start: `docker run --rm --name python3.6.8 -it $(docker build -q -f python/3.6.8/Dockerfile -t python3.6.8 .)`
+        - start: `docker run --rm --name python3.6.8 -it $(docker build -q -f python/368/Dockerfile -t python3.6.8 .)`
 ___
 1. __Monitoring:__
     - Docker Container Stats:
