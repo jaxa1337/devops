@@ -4,7 +4,6 @@ FROM quay.io/centos/centos:stream9
 RUN dnf -y update
 RUN dnf -y install python3 \
     git \
-    vim \
-    nano 
+    vim 
 
-CMD /bin/bash
+CMD ["/bin/bash"]

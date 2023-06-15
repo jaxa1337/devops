@@ -1,8 +1,7 @@
 version: '3.9'
 
 services:
-  ubuntu2204:
-    image: ubuntu:22.04
+  os:
     restart: 'no'
     env_file:
       - ./.env

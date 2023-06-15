@@ -27,34 +27,39 @@ ___
 ___
 2. __Linux:__
     - __Centos7__
-        - start: `docker run --rm -it -v $(pwd)/linux/centos/7/data:/data --env-file ./linux/centos/7/.env --name centos-7 $(docker build -q -f linux/centos/7/Dockerfile -t centos7 .)`
-        - stop: Just `Ctrl+C` or `exit`
+        - start: `docker compose -f ./linux/centos/7/docker-compose.yml up -d --build --remove-orphans --no-deps`
+        - stop: `docker compose -f ./linux/centos/7/docker-compose.yml down`
+        - exec: `docker compose -f ./linux/centos/7/docker-compose.yml exec os bash`
 
     - __Centos8__
-        - start: `docker run --rm -it -v $(pwd)/linux/centos/8/data:/data --env-file ./linux/centos/8/.env --name centos-8 $(docker build -q -f linux/centos/8/Dockerfile -t centos8 .)`
-        - stop: Just `Ctrl+C` or `exit`
+        - start: `docker compose -f ./linux/centos/8/docker-compose.yml up -d --build --remove-orphans --no-deps`
+        - stop: `docker compose -f ./linux/centos/8/docker-compose.yml down`
+        - exec: `docker compose -f ./linux/centos/8/docker-compose.yml exec os bash`
 
     - __Centos9__
-        - start: `docker run --rm -it -v $(pwd)/linux/centos/9/data:/data --env-file ./linux/centos/9/.env --name centos-9 $(docker build -q -f linux/centos/9/Dockerfile -t centos9 .)`
-        - stop: Just `Ctrl+C` or `exit`
+        - start: `docker compose -f ./linux/centos/9/docker-compose.yml up -d --build --remove-orphans --no-deps`
+        - stop: `docker compose -f ./linux/centos/9/docker-compose.yml down`
+        - exec: `docker compose -f ./linux/centos/9/docker-compose.yml exec os bash`
 
     - __Ubuntu__
          
         - start: `docker compose -f ./linux/ubuntu/2204/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./linux/ubuntu/2204/docker-compose.yml down`
-        - exec: `docker compose -f ./linux/ubuntu/2204/docker-compose.yml exec ubuntu2204 /bin/bash`
+        - exec: `docker compose -f ./linux/ubuntu/2204/docker-compose.yml exec os bash`
 
-    - __Apline__
-
-        Use Dockerfile:
-        - start: `docker run --rm -it -v $(pwd)/linux/apline/3.16/data:/data --env-file ./linux/apline/3.16/.env --name apline-3.16 $(docker build -q -f ./linux/apline/3.16/Dockerfile -t apline3.6 .)`
-        - stop: Just `Ctrl+C` or `exit`
-  
     - __Debian__
 
         - start: `docker compose -f ./linux/debian/12/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./linux/debian/12/docker-compose.yml down`
-        - exec: `docker compose -f ./linux/debian/12/docker-compose.yml exec debian12 /bin/bash`
+        - exec: `docker compose -f ./linux/debian/12/docker-compose.yml exec os bash`
+  
+    - __Apline__
+
+        Use Dockerfile:
+        - start: `docker compose -f ./linux/alpine/3_16/docker-compose.yml up -d --build --remove-orphans --no-deps`
+        - stop: `docker compose -f ./linux/alpine/3_16/docker-compose.yml down`
+        - exec: `docker compose -f ./linux/alpine/3_16/docker-compose.yml exec os bash`
+  
 ___
 1. __Python:__
     - __3.6.8__

@@ -6,7 +6,6 @@ RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|
 RUN dnf -y update
 RUN dnf -y install python3 \
     git \
-    vim \
-    nano 
-
-CMD /bin/bash
+    vim 
+    
+CMD ["/bin/bash"]

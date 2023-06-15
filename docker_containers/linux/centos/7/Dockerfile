@@ -6,4 +6,4 @@ RUN yum -y install python3 \
     vim \
     nano 
 
-CMD /bin/bash
+CMD ["/bin/bash"]
