@@ -1,0 +1,6 @@
+version: "3.9"
+
+services:
+  server:
+    image: docker run mcr.microsoft.com/windows/nanoserver:2022
+    

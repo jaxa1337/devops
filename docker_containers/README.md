@@ -39,21 +39,22 @@ ___
         - stop: Just `Ctrl+C` or `exit`
 
     - __Ubuntu__
-        
-        Use Dockerfile: 
-        - start: `docker run --rm -it -v $(pwd)/linux/ubuntu/22.04/data:/data  --env-file ./linux/ubuntu/22.04/.env --name ubuntu-22.04 $(docker build -q -f linux/ubuntu/22.04/Dockerfile -t ubuntu22.04 .)`
-        - stop: Just `Ctrl+C` or `exit`
-
-        Use Docker-compose:  
-        - start: `docker compose -f ./linux/ubuntu/22.04/docker-compose.yml up -d --build --remove-orphans --no-deps`
-        - attach: `docker exec -it ubuntu-22.04 /bin/bash`
-        - stop: `docker compose -f ./linux/ubuntu/22.04/docker-compose.yml down`
+         
+        - start: `docker compose -f ./linux/ubuntu/2204/docker-compose.yml up -d --build --remove-orphans --no-deps`
+        - stop: `docker compose -f ./linux/ubuntu/2204/docker-compose.yml down`
+        - exec: `docker compose -f ./linux/ubuntu/2204/docker-compose.yml exec ubuntu2204 /bin/bash`
 
     - __Apline__
 
         Use Dockerfile:
         - start: `docker run --rm -it -v $(pwd)/linux/apline/3.16/data:/data --env-file ./linux/apline/3.16/.env --name apline-3.16 $(docker build -q -f ./linux/apline/3.16/Dockerfile -t apline3.6 .)`
         - stop: Just `Ctrl+C` or `exit`
+  
+    - __Debian__
+
+        - start: `docker compose -f ./linux/debian/12/docker-compose.yml up -d --build --remove-orphans --no-deps`
+        - stop: `docker compose -f ./linux/debian/12/docker-compose.yml down`
+        - exec: `docker compose -f ./linux/debian/12/docker-compose.yml exec debian12 /bin/bash`
 ___
 1. __Python:__
     - __3.6.8__

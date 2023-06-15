@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  debian12:
+    restart: 'no'
+    env_file:
+      - ./.env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/data
+    command: "sleep infinity"
