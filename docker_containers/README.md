@@ -10,22 +10,25 @@ Simple commands:
 - START -> `docker-compose -f ./path/to/docker-compose.yml up -d --remove-orphans --no-deps`
 - STOP -> `docker-compose -f ./path/to/docker-compose.yml down`
 - LOGS -> `docker-compose -f ./path/to/docker-compose.yml logs`
+- EXEC -> `docker-compose -f ./path/to/docker-compose.yml exec SERVICE COMMANDS`
 ___
 1. __DB:__
     - __Mariadb__
-        - start: `docker compose -f ./db/mariadb/docker-compose.yml --env-file ./db/mariadb/.env up -d --remove-orphans --no-deps`
+        - start: `docker compose -f ./db/mariadb/docker-compose.yml up -d --remove-orphans --no-deps`
         - stop: `docker compose -f ./db/mariadb/docker-compose.yml down`
+        - client: `docker compose -f ./db/mariadb/docker-compose.yml exec db mysql -h 127.0.0.1 -u test -ptest testowa`
 
     - __MySQL__
-        - start: `docker compose -f ./db/mysql/docker-compose.yml --env-file ./db/mysql/.env up -d --remove-orphans --no-deps`
+        - start: `docker compose -f ./db/mysql/docker-compose.yml up -d --remove-orphans --no-deps`
         - stop: `docker compose -f ./db/mysql/docker-compose.yml down`
+        - client: `docker compose -f ./db/mysql/docker-compose.yml exec db mysql -h 127.0.0.1 -u test -ptest testowa`
 
     - __PostgreSQL__
-        - start: `docker compose -f ./db/postgres/docker-compose.yml --env-file ./db/postgres/.env up -d --remove-orphans --no-deps`
-        - attach: `docker exec -it postgres-db-1 psql {POSTGRES_DB} -U {POSTGRES_USER}`
+        - start: `docker compose -f ./db/postgres/docker-compose.yml up -d --remove-orphans --no-deps`
         - stop: `docker compose -f ./db/postgres/docker-compose.yml down`
+        - client: `docker compose -f ./db/postgres/docker-compose.yml exec db psql testowa -U test`
 ___
-2. __Linux:__
+1. __Linux:__
     - __Centos7__
         - start: `docker compose -f ./linux/centos/7/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./linux/centos/7/docker-compose.yml down`
@@ -56,9 +59,9 @@ ___
     - __Apline__
 
         Use Dockerfile:
-        - start: `docker compose -f ./linux/alpine/3_16/docker-compose.yml up -d --build --remove-orphans --no-deps`
-        - stop: `docker compose -f ./linux/alpine/3_16/docker-compose.yml down`
-        - exec: `docker compose -f ./linux/alpine/3_16/docker-compose.yml exec os bash`
+        - start: `docker compose -f ./linux/alpine/316/docker-compose.yml up -d --build --remove-orphans --no-deps`
+        - stop: `docker compose -f ./linux/alpine/316/docker-compose.yml down`
+        - exec: `docker compose -f ./linux/alpine/316/docker-compose.yml exec os bash`
   
 ___
 1. __Python:__

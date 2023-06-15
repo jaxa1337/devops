@@ -6,12 +6,14 @@ services:
     image: mariadb:${DB_VERSION}
     restart: always
     environment:
-      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
-      MARIADB_DATABASE: ${MARIADB_DATABASE}
-      MARIADB_USER: ${MARIADB_USER}
-      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-root}
+      MARIADB_DATABASE: ${MARIADB_DATABASE:-testowa}
+      MARIADB_USER: ${MARIADB_USER:-test}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD:-test}
     ports:
       - 3306:3306
+    env_file:
+      - ./.env
 
   adminer:
     image: adminer
