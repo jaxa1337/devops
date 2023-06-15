@@ -32,36 +32,36 @@ ___
     - __Centos7__
         - start: `docker compose -f ./linux/centos/7/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./linux/centos/7/docker-compose.yml down`
-        - exec: `docker compose -f ./linux/centos/7/docker-compose.yml exec os bash`
+        - cli: `docker compose -f ./linux/centos/7/docker-compose.yml exec os bash`
 
     - __Centos8__
         - start: `docker compose -f ./linux/centos/8/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./linux/centos/8/docker-compose.yml down`
-        - exec: `docker compose -f ./linux/centos/8/docker-compose.yml exec os bash`
+        - cli: `docker compose -f ./linux/centos/8/docker-compose.yml exec os bash`
 
     - __Centos9__
         - start: `docker compose -f ./linux/centos/9/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./linux/centos/9/docker-compose.yml down`
-        - exec: `docker compose -f ./linux/centos/9/docker-compose.yml exec os bash`
+        - cli: `docker compose -f ./linux/centos/9/docker-compose.yml exec os bash`
 
     - __Ubuntu__
          
         - start: `docker compose -f ./linux/ubuntu/2204/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./linux/ubuntu/2204/docker-compose.yml down`
-        - exec: `docker compose -f ./linux/ubuntu/2204/docker-compose.yml exec os bash`
+        - cli: `docker compose -f ./linux/ubuntu/2204/docker-compose.yml exec os bash`
 
     - __Debian__
 
         - start: `docker compose -f ./linux/debian/12/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./linux/debian/12/docker-compose.yml down`
-        - exec: `docker compose -f ./linux/debian/12/docker-compose.yml exec os bash`
+        - cli: `docker compose -f ./linux/debian/12/docker-compose.yml exec os bash`
   
     - __Apline__
 
         Use Dockerfile:
         - start: `docker compose -f ./linux/alpine/316/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./linux/alpine/316/docker-compose.yml down`
-        - exec: `docker compose -f ./linux/alpine/316/docker-compose.yml exec os bash`
+        - cli: `docker compose -f ./linux/alpine/316/docker-compose.yml exec os bash`
   
 ___
 1. __Python:__
@@ -111,7 +111,7 @@ ___
    - start: `docker compose -f ./docker_containers/jenkins/docker-compose.yml up -d --build --remove-orphans --no-deps`
    - stop: `docker compose -f ./docker_containers/jenkins/docker-compose.yml down`
    - logs: `docker compose -f ./docker_containers/jenkins/docker-compose.yml logs --tail 20 -f`
-   - bash jenkins: `docker compose -f ./docker_containers/jenkins/docker-compose.yml exec -it jenkins bash`
+   - cli: `docker compose -f ./docker_containers/jenkins/docker-compose.yml exec jenkins bash`
 ___
 
 1. __Nexus3__
