@@ -4,7 +4,7 @@
 
 This repo contains simple Dockerfiles and docker-compose.yml for many apps which I used. 
 
-All containers are simple apps for testing some function etc.
+All containers are simple apps for testing some functions etc.
 
 Simple commands:
 - START -> `docker-compose -f ./path/to/docker-compose.yml up -d --remove-orphans --no-deps`
@@ -13,6 +13,10 @@ Simple commands:
 - EXEC -> `docker-compose -f ./path/to/docker-compose.yml exec SERVICE COMMANDS`
 ___
 1. __DB:__
+
+    For all dbs you can choose version of them in `./db/DB_TYPE/.env` file. 
+    Example for mariadb: [`./db/mariadb/.env`](./db/mariadb/.env)
+
     - __Mariadb__
         - start: `docker compose -f ./db/mariadb/docker-compose.yml up -d --remove-orphans --no-deps`
         - stop: `docker compose -f ./db/mariadb/docker-compose.yml down`
@@ -29,40 +33,34 @@ ___
         - client: `docker compose -f ./db/postgres/docker-compose.yml exec db psql testowa -U test`
 ___
 1. __Linux:__
-    - __Centos7__
-        - start: `docker compose -f ./linux/centos/7/docker-compose.yml up -d --build --remove-orphans --no-deps`
-        - stop: `docker compose -f ./linux/centos/7/docker-compose.yml down`
-        - cli: `docker compose -f ./linux/centos/7/docker-compose.yml exec os bash`
+    - __Centos__
+        Change in all commands `OS_VERSION`. Available os versions: __`7, 8, 9`__.
+        - start: `docker compose -f ./linux/centos/OS_VERSION/docker-compose.yml up -d --build --remove-orphans --no-deps`
+        - stop: `docker compose -f ./linux/centos/OS_VERSION/docker-compose.yml down`
+        - cli: `docker compose -f ./linux/centos/OS_VERSION/docker-compose.yml exec os bash`
 
-    - __Centos8__
-        - start: `docker compose -f ./linux/centos/8/docker-compose.yml up -d --build --remove-orphans --no-deps`
-        - stop: `docker compose -f ./linux/centos/8/docker-compose.yml down`
-        - cli: `docker compose -f ./linux/centos/8/docker-compose.yml exec os bash`
+    - __Ubuntu 22.04__
+        Change in all commands `OS_VERSION`. Available os versions: __`22.04`__.
+        - start: `docker compose -f ./linux/ubuntu/OS_VERSION/docker-compose.yml up -d --build --remove-orphans --no-deps`
+        - stop: `docker compose -f ./linux/ubuntu/OS_VERSION/docker-compose.yml down`
+        - cli: `docker compose -f ./linux/ubuntu/OS_VERSION/docker-compose.yml exec os bash`
 
-    - __Centos9__
-        - start: `docker compose -f ./linux/centos/9/docker-compose.yml up -d --build --remove-orphans --no-deps`
-        - stop: `docker compose -f ./linux/centos/9/docker-compose.yml down`
-        - cli: `docker compose -f ./linux/centos/9/docker-compose.yml exec os bash`
-
-    - __Ubuntu__
-        - start: `docker compose -f ./linux/ubuntu/2204/docker-compose.yml up -d --build --remove-orphans --no-deps`
-        - stop: `docker compose -f ./linux/ubuntu/2204/docker-compose.yml down`
-        - cli: `docker compose -f ./linux/ubuntu/2204/docker-compose.yml exec os bash`
-
-    - __Debian__
-        - start: `docker compose -f ./linux/debian/12/docker-compose.yml up -d --build --remove-orphans --no-deps`
-        - stop: `docker compose -f ./linux/debian/12/docker-compose.yml down`
-        - cli: `docker compose -f ./linux/debian/12/docker-compose.yml exec os bash`
+    - __Debian 12__
+        Change in all commands `OS_VERSION`. Available os versions: __`12`__.
+        - start: `docker compose -f ./linux/debian/OS_VERSION/docker-compose.yml up -d --build --remove-orphans --no-deps`
+        - stop: `docker compose -f ./linux/debian/OS_VERSION/docker-compose.yml down`
+        - cli: `docker compose -f ./linux/debian/OS_VERSION/docker-compose.yml exec os bash`
   
     - __Apline__
-        - start: `docker compose -f ./linux/alpine/316/docker-compose.yml up -d --build --remove-orphans --no-deps`
-        - stop: `docker compose -f ./linux/alpine/316/docker-compose.yml down`
-        - cli: `docker compose -f ./linux/alpine/316/docker-compose.yml exec os bash`
+        Change in all commands `OS_VERSION`. Available os versions: __`3.16`__.
+        - start: `docker compose -f ./linux/alpine/OS_VERSION/docker-compose.yml up -d --build --remove-orphans --no-deps`
+        - stop: `docker compose -f ./linux/alpine/OS_VERSION/docker-compose.yml down`
+        - cli: `docker compose -f ./linux/alpine/OS_VERSION/docker-compose.yml exec os bash`
   
 ___
 1. __Python:__
    
-   Please choos python version in [`docker_containers/python/.env`](./python/.env)!.
+   Please choos python version in [`docker_containers/python/.env`](./python/.env)!. 
    File [`entrypoint.sh`](./python/entrypoint.sh) contain `pip install` command and after instalation libraries, container fall asleep.
 
     - start: `docker compose -f ./python/docker-compose.yml up -d --remove-orphans --no-deps`
