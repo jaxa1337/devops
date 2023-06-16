@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  cli:
+    image: python:${PYTHON_TAG:-3.12}
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./requirements.txt:/app/requirements.txt
+      - ./entrypoint.sh:/entrypoint.d/entrypoint.sh
+      - ./app:/app
+    entrypoint: "./entrypoint.d/entrypoint.sh"

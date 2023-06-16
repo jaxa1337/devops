@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   db:
-    image: postgres:${DB_VERSION}
+    image: postgres:${DB_TAG}
     restart: always
     env_file:
       - .env

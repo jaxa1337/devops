@@ -45,28 +45,29 @@ ___
         - cli: `docker compose -f ./linux/centos/9/docker-compose.yml exec os bash`
 
     - __Ubuntu__
-         
         - start: `docker compose -f ./linux/ubuntu/2204/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./linux/ubuntu/2204/docker-compose.yml down`
         - cli: `docker compose -f ./linux/ubuntu/2204/docker-compose.yml exec os bash`
 
     - __Debian__
-
         - start: `docker compose -f ./linux/debian/12/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./linux/debian/12/docker-compose.yml down`
         - cli: `docker compose -f ./linux/debian/12/docker-compose.yml exec os bash`
   
     - __Apline__
-
-        Use Dockerfile:
         - start: `docker compose -f ./linux/alpine/316/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./linux/alpine/316/docker-compose.yml down`
         - cli: `docker compose -f ./linux/alpine/316/docker-compose.yml exec os bash`
   
 ___
 1. __Python:__
-    - __3.6.8__
-        - start: `docker run --rm --name python3.6.8 -it $(docker build -q -f python/368/Dockerfile -t python3.6.8 .)`
+   
+   Please choos python version in [`docker_containers/python/.env`](./python/.env)!.
+   File [`entrypoint.sh`](./python/entrypoint.sh) contain `pip install` command and after instalation libraries, container fall asleep.
+
+    - start: `docker compose -f ./python/docker-compose.yml up -d --remove-orphans --no-deps`
+    - stop: `docker compose -f ./python/docker-compose.yml down`
+    - python: `docker compose -f ./python/docker-compose.yml exec cli python`
 ___
 1. __Monitoring:__
     - Docker Container Stats:

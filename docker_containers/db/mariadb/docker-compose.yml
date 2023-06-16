@@ -3,7 +3,7 @@ version: '3.9'
 services:
 
   db:
-    image: mariadb:${DB_VERSION}
+    image: mariadb:${DB_TAG}
     restart: always
     environment:
       MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-root}
