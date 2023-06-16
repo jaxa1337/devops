@@ -105,11 +105,15 @@ ___
         - run_lzd: `docker compose -f ./monitoring/lazy_docker/docker-compose.yml exec monitor lzd`
 ___
 1. __PHP__
-    - [WebDevOps](./php/wd) - images delivered by [Webdevops](https://www.webdevops.io/). All images are described here [link](https://dockerfile.readthedocs.io/en/latest/content/DockerImages/index.html).
-      - php-nginx
-        - start: `docker compose -f ./php/wd/php-nginx/docker-compose.yml up -d --build --remove-orphans --no-deps`
-        - stop: `docker compose -f ./php/wd/php-nginx/docker-compose.yml down`
-        - cli: `docker compose -f ./php/wd/php-nginx/docker-compose.yml exec bash`
+    [WebDevOps](./php/wd) - images delivered by [Webdevops](https://www.webdevops.io/). All images are described here [link](https://dockerfile.readthedocs.io/en/latest/content/DockerImages/index.html).
+
+    - php-nginx
+  
+        Remeber, choose right image `TAG` in [`.env`](./php/wd/php_nginx/.env) file.
+
+       - start: `docker compose -f ./php/wd/php_nginx/docker-compose.yml up -d --build --remove-orphans --no-deps`
+       - stop: `docker compose -f ./php/wd/php_nginx/docker-compose.yml down`
+       - cli: `docker compose -f ./php/wd/php_nginx/docker-compose.yml exec php bash`
 ___
 1. __Wiki__
     - Wiki.JS
