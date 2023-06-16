@@ -12,3 +12,6 @@
 #==== VSCode ====
 .vscode
 ansible/ssh_keys
+
+#==== DB for containers ====
+docker_containers/monitoring/docker_stats/db_stats
