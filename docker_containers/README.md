@@ -33,26 +33,31 @@ ___
         - client: `docker compose -f ./db/postgres/docker-compose.yml exec db psql testowa -U test`
 ___
 1. __Linux:__
+   
     If you want put some data in system, put these data in `./linux/DISTRO/OS_VERSION/data`.
     - __Centos__ 
+
         Change in all commands `OS_VERSION`. Available os versions: __`7, 8, 9`__. 
         - start: `docker compose -f ./linux/centos/OS_VERSION/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./linux/centos/OS_VERSION/docker-compose.yml down`
         - cli: `docker compose -f ./linux/centos/OS_VERSION/docker-compose.yml exec os bash`
 
     - __Ubuntu__ 
+
         Change in all commands `OS_VERSION`. Available os versions: __`22.04`__.
         - start: `docker compose -f ./linux/ubuntu/OS_VERSION/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./linux/ubuntu/OS_VERSION/docker-compose.yml down`
         - cli: `docker compose -f ./linux/ubuntu/OS_VERSION/docker-compose.yml exec os bash`
 
     - __Debian__ 
+
         Change in all commands `OS_VERSION`. Available os versions: __`12`__.
         - start: `docker compose -f ./linux/debian/OS_VERSION/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./linux/debian/OS_VERSION/docker-compose.yml down`
         - cli: `docker compose -f ./linux/debian/OS_VERSION/docker-compose.yml exec os bash`
   
     - __Apline__ 
+
         Change in all commands `OS_VERSION`. Available os versions: __`3.16`__.
         - start: `docker compose -f ./linux/alpine/OS_VERSION/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./linux/alpine/OS_VERSION/docker-compose.yml down`
