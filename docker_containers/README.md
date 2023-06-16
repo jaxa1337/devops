@@ -17,6 +17,8 @@ ___
     For all dbs you can choose version of them in `./db/DB_TYPE/.env` file. 
     Example for mariadb: [`./db/mariadb/.env`](./db/mariadb/.env)
 
+    __Adminer__ service is available under 8888 port. 
+
     - __Mariadb__ 
         - start: `docker compose -f ./db/mariadb/docker-compose.yml up -d --remove-orphans --no-deps`
         - stop: `docker compose -f ./db/mariadb/docker-compose.yml down`
@@ -74,12 +76,17 @@ ___
     - python: `docker compose -f ./python/docker-compose.yml exec cli python`
 ___
 1. __Monitoring:__
+
+    All monitoring tools must be connected to `docker.sock`. Path to this sock is different on Linux and Windows, choose right env `DOCKER_SOCK`
+    in __`./monitoring/MONITORING/.env`__. 
+
+    Default dashboards are available under `localhost:${HOST_PORT:-8889}`
+
     - Docker Container Stats:
 
-        Use Docker Compose:
-        - start: `docker compose -f ./monitoring/docker-container-stats/docker-compose.yml up -d --build --remove-orphans --no-deps`
-        - attach: `docker exec -it docker-stats /bin/bash`
-        - stop: `docker compose -f ./monitoring/docker-container-stats/docker-compose.yml down`
+        - start: `docker compose -f ./monitoring/docker_stats/docker-compose.yml up -d --build --remove-orphans --no-deps`
+        - stop: `docker compose -f ./monitoring/docker_stats/docker-compose.yml down`
+        - cli: `docker compose -f ./monitoring/docker_stats/docker-compose.yml exec stats bash`
         
     - Portainer:
 
