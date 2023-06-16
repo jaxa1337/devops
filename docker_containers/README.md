@@ -12,46 +12,47 @@ Simple commands:
 - LOGS -> `docker-compose -f ./path/to/docker-compose.yml logs`
 - EXEC -> `docker-compose -f ./path/to/docker-compose.yml exec SERVICE COMMANDS`
 ___
-1. __DB:__
+1. __DB:__ 
 
     For all dbs you can choose version of them in `./db/DB_TYPE/.env` file. 
     Example for mariadb: [`./db/mariadb/.env`](./db/mariadb/.env)
 
-    - __Mariadb__
+    - __Mariadb__ 
         - start: `docker compose -f ./db/mariadb/docker-compose.yml up -d --remove-orphans --no-deps`
         - stop: `docker compose -f ./db/mariadb/docker-compose.yml down`
         - client: `docker compose -f ./db/mariadb/docker-compose.yml exec db mysql -h 127.0.0.1 -u test -ptest testowa`
 
-    - __MySQL__
+    - __MySQL__ 
         - start: `docker compose -f ./db/mysql/docker-compose.yml up -d --remove-orphans --no-deps`
         - stop: `docker compose -f ./db/mysql/docker-compose.yml down`
         - client: `docker compose -f ./db/mysql/docker-compose.yml exec db mysql -h 127.0.0.1 -u test -ptest testowa`
 
-    - __PostgreSQL__
+    - __PostgreSQL__ 
         - start: `docker compose -f ./db/postgres/docker-compose.yml up -d --remove-orphans --no-deps`
         - stop: `docker compose -f ./db/postgres/docker-compose.yml down`
         - client: `docker compose -f ./db/postgres/docker-compose.yml exec db psql testowa -U test`
 ___
 1. __Linux:__
-    - __Centos__
-        Change in all commands `OS_VERSION`. Available os versions: __`7, 8, 9`__.
+    If you want put some data in system, put these data in `./linux/DISTRO/OS_VERSION/data`.
+    - __Centos__ 
+        Change in all commands `OS_VERSION`. Available os versions: __`7, 8, 9`__. 
         - start: `docker compose -f ./linux/centos/OS_VERSION/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./linux/centos/OS_VERSION/docker-compose.yml down`
         - cli: `docker compose -f ./linux/centos/OS_VERSION/docker-compose.yml exec os bash`
 
-    - __Ubuntu 22.04__
+    - __Ubuntu__ 
         Change in all commands `OS_VERSION`. Available os versions: __`22.04`__.
         - start: `docker compose -f ./linux/ubuntu/OS_VERSION/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./linux/ubuntu/OS_VERSION/docker-compose.yml down`
         - cli: `docker compose -f ./linux/ubuntu/OS_VERSION/docker-compose.yml exec os bash`
 
-    - __Debian 12__
+    - __Debian__ 
         Change in all commands `OS_VERSION`. Available os versions: __`12`__.
         - start: `docker compose -f ./linux/debian/OS_VERSION/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./linux/debian/OS_VERSION/docker-compose.yml down`
         - cli: `docker compose -f ./linux/debian/OS_VERSION/docker-compose.yml exec os bash`
   
-    - __Apline__
+    - __Apline__ 
         Change in all commands `OS_VERSION`. Available os versions: __`3.16`__.
         - start: `docker compose -f ./linux/alpine/OS_VERSION/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./linux/alpine/OS_VERSION/docker-compose.yml down`
