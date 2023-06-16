@@ -92,7 +92,9 @@ ___
 
         - start: `docker compose -f ./monitoring/portainer/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./monitoring/portainer/docker-compose.yml down`
-        - cli: `docker compose -f ./monitoring/portainer/docker-compose.yml exec monitor bash`
+
+        This container is based on [__scratch__](https://hub.docker.com/_/scratch) image, and this is reason why we cannot access to CLI.
+        Use this tool [__`cntr`__](https://github.com/Mic92/cntr) to access to this container.
     
     - Lazy Docker:
 
