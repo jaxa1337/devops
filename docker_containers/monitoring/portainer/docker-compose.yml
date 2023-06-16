@@ -1,7 +1,7 @@
 version: '3.9'
 
 services:
-  portainer:
+  monitor:
     image: portainer/portainer-ce
     container_name: portainer
     restart: 'no'

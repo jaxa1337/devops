@@ -1,7 +1,7 @@
 version: '3.9'
 
 services:
-  stats:
+  monitor:
     image: virtualzone/docker-container-stats
     container_name: docker-stats
     ports:

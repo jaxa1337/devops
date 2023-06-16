@@ -86,21 +86,21 @@ ___
 
         - start: `docker compose -f ./monitoring/docker_stats/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./monitoring/docker_stats/docker-compose.yml down`
-        - cli: `docker compose -f ./monitoring/docker_stats/docker-compose.yml exec stats bash`
+        - cli: `docker compose -f ./monitoring/docker_stats/docker-compose.yml exec monitor bash`
         
     - Portainer:
 
-        Use Docker Compose:
         - start: `docker compose -f ./monitoring/portainer/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - attach: `docker exec -it portainer /bin/bash`
         - stop: `docker compose -f ./monitoring/portainer/docker-compose.yml down`
     
     - Lazy Docker:
 
-        Use Docker Compose:
-        - start: `docker compose -f ./monitoring/lazy-docker/docker-compose.yml up -d --build --remove-orphans --no-deps`
-        - attach: `docker exec -it lazy-docker lzd`
+        Doesn't have dashboard, you must run `lzd` proccess. Use `run_lzd` command.
+
+        - start: `docker compose -f ./monitoring/lazy_docker/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./monitoring/lazy-docker/docker-compose.yml down`
+        - run_lzd: `docker compose -f ./monitoring/lazy_docker/docker-compose.yml exec monitor lzd`
 ___
 1. __PHP__
     - WebDevOps php-nginx-apline
