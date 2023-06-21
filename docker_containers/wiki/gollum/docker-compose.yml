@@ -2,10 +2,14 @@ version: "3.9"
 
 services:
   wiki:
-    image: genebarker/gollum
+    image: gollumwiki/gollum:master
     ports:
-      - 8888:80
-    volumes:
-      - ./provision/data/wiki:/root/wiki
-      - ./provision/keys/id_rsa:/etc/wiki/github.pem
-    command: --http
+      - 8888:4567/tcp
+    # volumes:
+      # - ./provision/data/wiki/:/wiki:rw
+      # - ./provision/keys/id_rsa:/etc/wiki/github.pem
+      # - ./config/config.rb:/etc/gollum/config.rb
+    # command:
+      # - "--http"
+      # - "--config=/etc/gollum/config.rb"
+    restart: always

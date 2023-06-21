@@ -8,8 +8,6 @@ services:
       - .env
     volumes:
       - ./provision/nginx/vhost.conf:/opt/docker/etc/nginx/vhost.conf
-      - ./provision/nginx/10-php.conf:/opt/docker/etc/nginx/vhost.common.d/10-php.conf
-      - ./provision/nginx/10-location-root.conf:/opt/docker/etc/nginx/vhost.common.d/10-location-root.conf
       - ./provision/cron/crontab:/etc/crontabs/application
       - ./provision/entrypoints/:/entrypoint.d/
     ports:

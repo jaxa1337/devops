@@ -4,7 +4,7 @@
 
 This repo contains simple Dockerfiles and docker-compose.yml for many apps which I used. 
 
-All containers are simple apps for testing some functions etc.
+All containers are simple apps for testing some functions etc. Run all commands from `docker_containers` directory.
 
 Simple commands:
 - START -> `docker-compose -f ./path/to/docker-compose.yml up -d --remove-orphans --no-deps`
@@ -105,6 +105,7 @@ ___
         - run_lzd: `docker compose -f ./monitoring/lazy_docker/docker-compose.yml exec monitor lzd`
 ___
 1. __PHP__
+   
     [WebDevOps](./php/wd) - images delivered by [Webdevops](https://www.webdevops.io/). All images are described here [link](https://dockerfile.readthedocs.io/en/latest/content/DockerImages/index.html).
 
     - php-nginx
@@ -117,13 +118,12 @@ ___
 ___
 1. __Wiki__
     - Wiki.JS
-        - start: `docker compose -f ./docker_containers/wiki/wiki.js/docker-compose.yml up -d --build --remove-orphans --no-deps`
-        
-        - stop: `docker compose -f ./docker_containers/wiki/wiki.js/docker-compose.yml down`
+        - start: `docker compose -f ./wiki/wiki_js/docker-compose.yml up -d --build --remove-orphans --no-deps`
+        - stop: `docker compose -f ./wiki/wiki_js/docker-compose.yml down`
 
     - Gollum
-        - start: `docker compose -f ./docker_containers/wiki/gollum/docker-compose.yml up -d --build --remove-orphans --no-deps`
-        - stop: `docker compose -f ./docker_containers/wiki/gollum/docker-compose.yml down`
+        - start: `docker compose -f ./wiki/gollum/docker-compose.yml up -d --build --remove-orphans --no-deps`
+        - stop: `docker compose -f ./wiki/gollum/docker-compose.yml down`
 ___
 1. __Jenkins__
    - start: `docker compose -f ./docker_containers/jenkins/docker-compose.yml up -d --build --remove-orphans --no-deps`
