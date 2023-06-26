@@ -3,10 +3,10 @@
   #
   # Equivalent to --adapter [ADAPTER]
 
-  module Gollum
-    # to require 'my_adapter':
-    Gollum::GIT_ADAPTER = "my"
-  end
+  # module Gollum
+  #   # to require 'my_adapter':
+  #   Gollum::GIT_ADAPTER = "rugged"
+  # end
 
   wiki_options = {
 
@@ -116,7 +116,7 @@
 
     #hyphened_tag_lookup: true,
     #case_insensitive_tag_lookup: true,
-    #global_tag_lookup: true,
+    global_tag_lookup: true,
 
     #-----------------------------------------------------------------------------
     # Enables MathJax (renders mathematical equations). By default, uses the
@@ -124,7 +124,7 @@
     #
     # Equivalent to --mathjax
 
-    #mathjax: true,
+    mathjax: false,
 
     #-----------------------------------------------------------------------------
     # Specify path to a custom MathJax configuration.
@@ -190,10 +190,10 @@
     # production/staging.
 
     # Equivalent to --static
-    #static: true,
+    static: true,
 
     # Equivalent to --no-static
-    #static: false,
+    # static: false,
 
     #-----------------------------------------------------------------------------
     # Specify custom mustache template directory.
@@ -258,16 +258,16 @@
     # Change the home page name
     # https://github.com/gollum/gollum/issues/1569#issuecomment-633033895
 
-    #index_page: 'index',
+    index_page: 'README.md',
 
     #-----------------------------------------------------------------------------
     # Change the number of changes in the rss feed
 
-    #pagination_count: 15
+    # pagination_count: 15
   }
 
   #-------------------------------------------------------------------------------
   # Change default markup
-  #Precious::App.set(:default_markup, :asciidoc)
+  # Precious::App.set(:default_markup, :creole)
 
   Precious::App.set(:wiki_options, wiki_options)

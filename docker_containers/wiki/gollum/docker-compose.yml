@@ -4,12 +4,11 @@ services:
   wiki:
     image: gollumwiki/gollum:master
     ports:
-      - 8888:4567/tcp
-    # volumes:
-      # - ./provision/data/wiki/:/wiki:rw
+      - 4567:4567/tcp
+    volumes:
+      - /path/to/git/repo:/wiki/:rw
       # - ./provision/keys/id_rsa:/etc/wiki/github.pem
-      # - ./config/config.rb:/etc/gollum/config.rb
-    # command:
-      # - "--http"
-      # - "--config=/etc/gollum/config.rb"
+      - ./config/config.rb:/etc/gollum/config.rb
+    command:
+      - "--config=/etc/gollum/config.rb"
     restart: always
