@@ -1,24 +1,6 @@
 ---
-- name: Setup web server
-  hosts: server_centos
-  become: true
-  tasks:
-    - name: Install httpd
-      yum: 
-        name: httpd
-        state: present
-    - name: Start and enable httpd
-      service:
-        name: httpd
-        state: started
-        enabled: yes
-        
-- name: Setup db server
-  hosts: server_debian
-  become: true
-  tasks: 
-    - name: Install mysql server
-      apt: 
-        name: default-mysql-server
-        update_cache: true
-        state: present
+- name: Create user
+  hosts: all
+  become: yes
+  roles:
+    - create_user

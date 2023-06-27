@@ -1,6 +1,23 @@
 ---
+- name: Get all groups
+  ansible.builtin.getent:
+    database: group
+
+# - name: Get all users
+#   ansible.builtin.getent:
+#     database: passwd
+
+# - name: Debug
+  # debug:
+    # msg: '{{ item.groups | intersect(ansible_facts["getent_group"]) }}'
+  # with_items: '{{ users }}'
+
 - name: Create user
   ansible.builtin.user:
-    name: {{ NAME }}
-    home: {{ HOME_DIR }}
-    groups: {{ GROUPS }}
+    name: '{{ item.username }}'
+    home: '{{ item.home_dir }}'
+    groups: '{{ item.groups | intersect(ansible_facts["getent_group"]) }}'
+    append: yes
+  with_items: '{{ users }}'
+
+
