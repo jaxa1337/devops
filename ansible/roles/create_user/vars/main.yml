@@ -1,0 +1,8 @@
+---
+users:
+  - username: deployment
+    home_dir: /deployment
+    groups: 
+      - vagrant
+      - games
+      - wheel
