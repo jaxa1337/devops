@@ -1,0 +1,6 @@
+---
+- name: Create user
+  ansible.builtin.user:
+    name: {{ NAME }}
+    home: {{ HOME_DIR }}
+    groups: {{ GROUPS }}
