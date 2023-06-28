@@ -20,4 +20,11 @@
     append: yes
   with_items: '{{ users }}'
 
+- name: Set authorized keys
+  ansible.posix.authorized_key:
+    user: '{{ item.username }}'
+    state: present
+    key: "{{ item.authorized_keys }}"
+  with_items: '{{ users }}'
+
 
