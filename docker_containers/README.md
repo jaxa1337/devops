@@ -103,6 +103,16 @@ ___
         - start: `docker compose -f ./monitoring/lazy_docker/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./monitoring/lazy_docker/docker-compose.yml down`
         - run_lzd: `docker compose -f ./monitoring/lazy_docker/docker-compose.yml exec monitor lzd`
+
+    - Loki Grafana Promatail stack - with syslog-ng 
+
+        - start: `docker compose -f ./monitoring/loki_grafana/docker-compose.yml up -d --build --remove-orphans --no-deps`
+        - stop: `docker compose -f ./monitoring/loki_grafana/docker-compose.yml down`
+
+        Please check config files in [`./monitoring/loki_grafana/config/`](./monitoring/loki_grafana/config/) dir!
+
+        Grafana is exposed on `localhost:3000`. Loki is added as source, automaticly. Default dashboards are in [dashboards dir](./monitoring/loki_grafana/config/grafana/dashboards/)
+
 ___
 1. __PHP__
    
