@@ -1,6 +1,6 @@
 ---
 - name: Create user
-  hosts: all
+  hosts: vagrant
   become: yes
   roles:
     - create_user
