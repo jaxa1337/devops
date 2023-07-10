@@ -17,7 +17,7 @@
     name: '{{ item.username }}'
     home: '{{ item.home_dir }}'
     groups: '{{ item.groups | intersect(ansible_facts["getent_group"]) }}'
-    shell: "/bin/bash"
+    shell: '{{ item.shell|default("/bin/bash") }}'
     append: yes
   with_items: '{{ users }}'
 
