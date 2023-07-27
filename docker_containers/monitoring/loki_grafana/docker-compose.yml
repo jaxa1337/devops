@@ -4,36 +4,40 @@ networks:
   logmonitor_network:
     driver: bridge
     name: logmonitor_network
+
+volumes:
+  loki_chunks:
+
 services:
   grafana:
     container_name: grafana
     environment:
-      GF_SECURITY_ADMIN_USER: "admin"
-      GF_SECURITY_ADMIN_PASSWORD: "admin"
-      GF_LOG_LEVEL: "info"
-      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /var/lib/grafana/dashboards/exanet_dashboard.json
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-admin}
+      - GF_LOG_LEVEL=${GRAFANA_LOG_LVL:-info}
+      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/var/lib/grafana/dashboards/exanet_dashboard.json
     image: grafana/grafana:9.5.1
     networks:
       - logmonitor_network
     ports:
-    - 3000:3000
-    expose:
-    - 3000
+      - 3000:3000
     restart: always
     volumes:
-    - ./config/grafana/datasources:/etc/grafana/provisioning/datasources
-    - ./config/grafana/dashboards/dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml
-    - ./config/grafana/dashboards/schemas/:/var/lib/grafana/dashboards:rw
+      - ./config/grafana/datasources:/etc/grafana/provisioning/datasources
+      - ./config/grafana/dashboards/dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml
+      - ./config/grafana/dashboards/schemas/:/var/lib/grafana/dashboards:rw
     
   loki:
-    command: -config.file=/etc/loki/loki-config.yml
     container_name: loki
     image: grafana/loki:2.8.0
     networks:
       - logmonitor_network
     restart: always
+    env_file: .env
+    command: -config.file=/etc/loki/loki-config.yml -config.expand-env=true
     volumes:
     - ./config/loki/loki-config.yaml:/etc/loki/loki-config.yml
+    # - loki_chunks:/loki
 
   promtail:
     command: -config.file=/etc/promtail/promtail-config.yml

@@ -2,6 +2,10 @@ auth_enabled: false
 
 server:
   http_listen_port: 3100
+  http_listen_network: tcp
+  http_listen_conn_limit: 5
+  log_level: ${LOKI_LOG_LVL:-info}
+  log_source_ips_enabled: true
   # grpc_listen_port: 9096
 
 ingester:
@@ -66,3 +70,10 @@ ruler:
     kvstore:
       store: inmemory
   enable_api: true
+
+query_scheduler:
+  max_outstanding_requests_per_tenant: 4096
+
+query_range:
+  parallelise_shardable_queries: false
+  split_queries_by_interval: 0

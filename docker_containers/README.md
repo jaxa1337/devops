@@ -106,6 +106,8 @@ ___
 
     - Loki Grafana Promatail stack - with syslog-ng 
 
+        Before start, you must copy [`.env.example`](./monitoring/loki_grafana/.env.example) file and change name of copyied file to `.env`. After these, set up all environments variables.
+
         - start: `docker compose -f ./monitoring/loki_grafana/docker-compose.yml up -d --build --remove-orphans --no-deps`
         - stop: `docker compose -f ./monitoring/loki_grafana/docker-compose.yml down`
 
