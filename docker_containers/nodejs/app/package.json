@@ -1,0 +1,285 @@
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+      "ariadna": {
+        "projectType": "application",
+        "schematics": {
+          "@schematics/angular:component": {
+            "prefix": "app",
+            "style": "scss"
+          },
+          "@schematics/angular:directive": {
+            "prefix": "app"
+          }
+        },
+        "root": "",
+        "sourceRoot": "src",
+        "prefix": "app",
+        "architect": {
+          "build": {
+            "builder": "@angular-devkit/build-angular:browser",
+            "options": {
+              "allowedCommonJsDependencies": [
+                "lodash",
+                "lodash.debounce",
+                "ngx-translate-parser-plural-select",
+                "date-fns/locale/en-US/index",
+                "md5",
+                "warning",
+                "flatpickr",
+                "dom-to-image",
+                "d3-cloud",
+                "rbush"
+              ],
+              "outputPath": "dist/browser",
+              "index": "src/index.html",
+              "main": "src/main.ts",
+              "polyfills": "src/polyfills.ts",
+              "tsConfig": "tsconfig.app.json",
+              "inlineStyleLanguage": "scss",
+              "assets": [
+                "src/favicon.ico",
+                "src/assets"
+              ],
+              "styles": [
+                "src/styles.scss",
+                {
+                  "input": "src/assets/scss/lazy.scss",
+                  "bundleName": "main-lazy",
+                  "inject": false
+                }
+              ],
+              "scripts": [
+                "./node_modules/cookieconsent/build/cookieconsent.min.js"
+              ]
+            },
+            "configurations": {
+              "production": {
+                "optimization": true,
+                "outputHashing": "all",
+                "sourceMap": true,
+                "namedChunks": true,
+                "commonChunk": true,
+                "extractLicenses": true,
+                "vendorChunk": true,
+                "buildOptimizer": true,
+                "styles": [
+                  "src/styles.scss",
+                  {
+                    "input": "src/assets/scss/lazy.scss",
+                    "bundleName": "main-lazy",
+                    "inject": false
+                  }
+                ],
+                "scripts": [
+                  "./node_modules/cookieconsent/build/cookieconsent.min.js"
+                ],
+                "index": {
+                  "input": "src/index.prod.html",
+                  "output": "index.html"
+                },
+                "fileReplacements": [
+                  {
+                    "replace": "src/environments/environment.ts",
+                    "with": "src/environments/environment.prod.ts"
+                  }
+                ]
+              },
+              "development": {
+                "buildOptimizer": false,
+                "optimization": false,
+                "vendorChunk": true,
+                "extractLicenses": false,
+                "sourceMap": true,
+                "namedChunks": true
+              },
+              "debug": {
+                "buildOptimizer": false,
+                "optimization": false,
+                "vendorChunk": true,
+                "extractLicenses": false,
+                "sourceMap": true,
+                "namedChunks": true
+              }
+            },
+            "defaultConfiguration": "production"
+          },
+          "serve": {
+            "builder": "@angular-devkit/build-angular:dev-server",
+            "options": {
+              "browserTarget": "ariadna:build"
+            },
+            "configurations": {
+              "production": {
+                "browserTarget": "ariadna:build:production"
+              },
+              "development": {
+                "browserTarget": "ariadna:build:development"
+              },
+              "debug": {
+                "browserTarget": "ariadna:build:debug"
+              }
+            },
+            "defaultConfiguration": "development"
+          },
+          "extract-i18n": {
+            "builder": "@angular-devkit/build-angular:extract-i18n",
+            "options": {
+              "browserTarget": "ariadna:build"
+            }
+          },
+          "test": {
+            "builder": "@angular-devkit/build-angular:karma",
+            "options": {
+              "main": "src/test.ts",
+              "polyfills": "src/polyfills.ts",
+              "tsConfig": "tsconfig.spec.json",
+              "karmaConfig": "karma.conf.js",
+              "inlineStyleLanguage": "scss",
+              "assets": [
+                "src/assets",
+                "src/favicon.ico"
+              ],
+              "styles": [
+                {
+                  "inject": false,
+                  "input": "src/styles.scss",
+                  "bundleName": "styles"
+                },
+                {
+                  "input": "src/assets/scss/lazy.scss",
+                  "bundleName": "main-lazy",
+                  "inject": false
+                }
+              ],
+              "scripts": [
+                "./node_modules/cookieconsent/build/cookieconsent.min.js"
+              ]
+            }
+          },
+          "lint": {
+            "builder": "@angular-eslint/builder:lint",
+            "options": {
+              "lintFilePatterns": [
+                "src/**/*.ts",
+                "src/**/*.html"
+              ]
+            }
+          },
+          "server": {
+            "builder": "@angular-devkit/build-angular:server",
+            "options": {
+              "outputPath": "dist/server",
+              "main": "server.ts",
+              "tsConfig": "tsconfig.server.json",
+              "inlineStyleLanguage": "scss"
+            },
+            "configurations": {
+              "production": {
+                "outputHashing": "media",
+                "fileReplacements": [
+                  {
+                    "replace": "src/environments/environment.ts",
+                    "with": "src/environments/environment.prod.ts"
+                  }
+                ],
+                "sourceMap": true,
+                "optimization": true
+              },
+              "development": {
+                "optimization": false,
+                "sourceMap": true,
+                "extractLicenses": false
+              }
+            },
+            "defaultConfiguration": "production"
+          },
+          "serve-ssr": {
+            "builder": "@nguniversal/builders:ssr-dev-server",
+            "options": {
+              "browserTarget": "ariadna:build",
+              "serverTarget": "ariadna:server",
+              "inlineStyleLanguage": "scss"
+            },
+            "configurations": {
+              "production": {
+                "browserTarget": "ariadna:build:production",
+                "serverTarget": "ariadna:server:production"
+              },
+              "development": {
+                "browserTarget": "ariadna:build:development",
+                "serverTarget": "ariadna:server:development"
+              }
+            },
+            "defaultConfiguration": "development"
+          },
+          "prerender": {
+            "builder": "@nguniversal/builders:prerender",
+            "options": {
+              "browserTarget": "ariadna:build:production",
+              "serverTarget": "ariadna:server:production",
+              "guessRoutes": false,
+              "routes": [
+                "/",
+                "/dashboard",
+                "/dashboard/panel/desktop",
+                "/dashboard/panel/desktop/parcel-point/daily-report",
+                "/dashboard/panel/order/protocols",
+                "/dashboard/panel/order/cod"
+              ]
+            },
+            "configurations": {
+              "production": {
+                "browserTarget": "ariadna:build:production",
+                "serverTarget": "ariadna:server:production"
+              },
+              "development": {
+                "browserTarget": "ariadna:build:development",
+                "serverTarget": "ariadna:server:development"
+              }
+            },
+            "defaultConfiguration": "production"
+          },
+          "cypress-run": {
+            "builder": "@cypress/schematic:cypress",
+            "options": {
+              "devServerTarget": "ariadna:serve"
+            },
+            "configurations": {
+              "production": {
+                "devServerTarget": "ariadna:serve:production"
+              }
+            }
+          },
+          "cypress-open": {
+            "builder": "@cypress/schematic:cypress",
+            "options": {
+              "watch": true,
+              "headless": false
+            }
+          },
+          "e2e": {
+            "builder": "@cypress/schematic:cypress",
+            "options": {
+              "devServerTarget": "ariadna:serve",
+              "watch": true,
+              "headless": false
+            },
+            "configurations": {
+              "production": {
+                "devServerTarget": "ariadna:serve:production"
+              }
+            }
+          }
+        }
+      }
+    },
+    "cli": {
+      "schematicCollections": [
+        "@angular-eslint/schematics"
+      ],
+      "analytics": false
+    }
+  }

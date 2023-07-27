@@ -1,0 +1,3 @@
+amqp
+azure-servicebus
+asyncio

@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  node:
+    image: node:${NODEJS_VERSION:-14.17}
+    restart: always
+    env_file:
+      - .env
+    user: node
+    volumes:
+      - ./app:/home/node/app
+    working_dir: /home/node/app
+    ports:
+      - 8081:8081
+    command: "node app.js"

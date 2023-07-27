@@ -136,19 +136,25 @@ ___
         - stop: `docker compose -f ./wiki/gollum/docker-compose.yml down`
 ___
 1. __Jenkins__
-   - start: `docker compose -f ./docker_containers/jenkins/docker-compose.yml up -d --build --remove-orphans --no-deps`
-   - stop: `docker compose -f ./docker_containers/jenkins/docker-compose.yml down`
-   - logs: `docker compose -f ./docker_containers/jenkins/docker-compose.yml logs --tail 20 -f`
-   - cli: `docker compose -f ./docker_containers/jenkins/docker-compose.yml exec jenkins bash`
+   - start: `docker compose -f ./jenkins/docker-compose.yml up -d --build --remove-orphans --no-deps`
+   - stop: `docker compose -f ./jenkins/docker-compose.yml down`
+   - logs: `docker compose -f ./jenkins/docker-compose.yml logs --tail 20 -f`
+   - cli: `docker compose -f ./jenkins/docker-compose.yml exec jenkins bash`
 ___
 
 1. __Nexus3__
-    - start: `docker compose -f ./docker_containers/sonatype/nexus3/docker-compose.yml up -d --remove-orphans --no-deps`
-    - stop: `docker compose -f ./docker_containers/sonatype/nexus3/docker-compose.yml down`
-    - logs: `docker compose -f ./docker_containers/sonatype/nexus3/docker-compose.yml logs`
+    - start: `docker compose -f ./sonatype/nexus3/docker-compose.yml up -d --remove-orphans --no-deps`
+    - stop: `docker compose -f ./sonatype/nexus3/docker-compose.yml down`
+    - logs: `docker compose -f ./sonatype/nexus3/docker-compose.yml logs`
     - show default pass: `docker exec nexus3-nexus3-1 cat /opt/sonatype/sonatype-work/nexus3/admin.password`
 ___
 
 1. __Sonarqube__
-    - start: `docker compose -f ./docker_containers/sonarqube/docker-compose.yml up -d --remove-orphans --no-deps`
-    - stop: `docker compose -f ./docker_containers/sonarqube/docker-compose.yml logs`
+    - start: `docker compose -f ./sonarqube/docker-compose.yml up -d --remove-orphans --no-deps`
+    - stop: `docker compose -f ./sonarqube/docker-compose.yml logs`
+
+___
+
+1. __NodeJS__
+    - start: `docker compose -f ./nodejs/docker-compose.yml up -d --remove-orphans --no-deps`
+    - stop: `docker compose -f ./nodejs/docker-compose.yml down`
