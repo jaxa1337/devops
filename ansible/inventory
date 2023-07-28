@@ -1,3 +1,0 @@
-[vagrant]
-;server_centos ansible_host=192.168.10.3 ansible_user=vagrant ansible_password=vagrant
-server_debian ansible_host=192.168.10.4 ansible_user=vagrant ansible_password=vagrant

@@ -1,6 +1,6 @@
 ---
 - name: Create user
-  hosts: vagrant
+  hosts: webdev
   become: yes
   roles:
     - create_user

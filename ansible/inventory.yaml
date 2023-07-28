@@ -1,0 +1,13 @@
+all:
+  children:
+    rhel:
+      hosts:
+        server_centos:
+    debian:
+      hosts:
+        server_debian:
+    users:
+      children:
+        webdev:
+          hosts:
+            server_debian:
