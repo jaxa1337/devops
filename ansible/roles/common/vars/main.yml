@@ -1,0 +1,41 @@
+---
+debian_packages:
+  - tmux
+  - wget
+  - curl
+  - vim 
+  - net-tools 
+  - iproute2
+  - bzip2 
+  - python3 
+  - python3-pip 
+  - rsync 
+  - gzip 
+  - zip
+  - rsync 
+  - gzip 
+  - zip 
+  - git 
+  - lvm2
+
+centos_packages:
+  - tmux
+  - bind-utils 
+  - wget 
+  - curl 
+  - vim 
+  - policycoreutils-python-utils 
+  - net-tools 
+  - iproute 
+  - bzip2 
+  - python3 
+  - python3-pip 
+  - rsync 
+  - gzip 
+  - zip 
+  - rsync 
+  - gzip 
+  - zip 
+  - dnf-utils 
+  - git 
+  - lvm2

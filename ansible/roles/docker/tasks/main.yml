@@ -1,0 +1,45 @@
+- name: Setting Docker GPG key on Debian os families.
+  ansible.builtin.apt_key:
+    url: "https://download.docker.com/linux/{{ ansible_facts['distribution']|lower }}/gpg"
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: Add Docker repo on RedHat os families.
+  shell: "yum config-manager --add-repo https://download.docker.com/linux/{{ ansible_facts['distribution']|lower }}/docker-ce.repo"
+  when: ansible_facts['os_family'] == 'RedHat'
+
+- name: Add Docker repo on Debian os families
+  ansible.builtin.apt_repository: 
+    repo: "deb https://download.docker.com/linux/debian {{ ansible_facts['distribution_release']|lower }} stable"
+    update_cache: yes
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: Install Docker Engine & Docker Compose on Debian
+  ansible.builtin.package: 
+    state: latest
+    name: '{{ debian_docker_packages }}'
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: Install Docker Engine & Docker Compose on CentOS
+  ansible.builtin.package: 
+    state: latest
+    name: '{{ rhel_docker_packages }}'
+  when: ansible_facts['os_family'] == 'RedHat'
+
+- name: Add vagrant user to docker group
+  ansible.builtin.user:
+   name: '{{ users }}'
+   state: present
+   append: yes
+   groups:
+    - docker
+
+- name: Restart docker service
+  ansible.builtin.service:
+    name: docker
+    enabled: yes
+    state: restarted
+
+- name: Docker add provision facts
+  ansible.builtin.set_fact:
+    cacheable: yes
+    all_provisions: "{{ all_provisions|default({})|combine({'Docker': none}) }}"

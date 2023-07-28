@@ -1,0 +1,29 @@
+- name: Debian/Ubuntu system update
+  ansible.builtin.apt:
+    update_cache: yes
+    upgrade: safe
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: CentOS system update
+  ansible.builtin.dnf:
+    update_cache: yes
+    name: "*"
+    state: latest
+  when: ansible_facts['os_family'] == 'RedHat'
+
+- name: Debian common packages installation
+  ansible.builtin.package:
+    state: latest
+    name: '{{ debian_packages }}'
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: CentOS common packages installation
+  ansible.builtin.package:
+    state: latest
+    name: '{{ centos_packages }}'
+  when: ansible_facts['os_family'] == 'RedHat'
+
+- name: Add common tasks provision facts
+  ansible.builtin.set_fact:
+    cacheable: yes
+    all_provisions: "{{ all_provisions|default({})|combine({'Common tasks': none}) }}"
