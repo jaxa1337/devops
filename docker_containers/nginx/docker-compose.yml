@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  nginx:
+    image: nginx
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    volumes:
+      # - ./app/:/var/www/test/public_html/
+      - ./config/default.conf:/etc/nginx/conf.d/default.conf
+    ports: 
+      - 9090:80
+    environment:
+      - NGINX_PORT=80

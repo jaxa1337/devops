@@ -160,3 +160,9 @@ ___
 1. __NodeJS__
     - start: `docker compose -f ./nodejs/docker-compose.yml up -d --remove-orphans --no-deps`
     - stop: `docker compose -f ./nodejs/docker-compose.yml down`
+
+___
+
+1. __Nginx__ 
+    - start: `docker compose -f ./nginx/docker-compose.yml up -d --remove-orphans --no-deps`
+    - stop: `docker compose -f ./nginx/docker-compose.yml down`
