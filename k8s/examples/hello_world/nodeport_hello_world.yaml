@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloworld-service
+spec:
+  ports:
+    - port: 8090
+      nodePort: 30001
+      targetPort: 80
+      protocol: tcp
+  selector:
+    app: hello_world
+  type: NodePort
