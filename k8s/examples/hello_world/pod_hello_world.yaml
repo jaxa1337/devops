@@ -6,8 +6,8 @@ metadata:
     app: helloworld
 spec: 
   containers:
-    - name: helloworld_container
+    - name: helloworld-container
       image: nginxdemos/hello
       ports: 
-        - name: helloworld_port
+        - name: helloworld-port
           containerPort: 80
