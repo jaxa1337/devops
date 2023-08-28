@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  mongodb:
+    restart: always
+    image: mongo:latest
+    environment:
+      - TZ=Europe/Warsawa
+      - MONGO_INITDB_DATABASE=${MONGODB_DB:-mongo_test}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USER:-test}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD:-test}
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - public_shared
+
+volumes:
+  mongodb_data:
