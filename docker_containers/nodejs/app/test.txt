@@ -1,0 +1,12 @@
+{
+    "apiLocation": "",
+    "appUrl": "mam apostrofy",
+    "basePath": "test",
+    "basicAuth": false,
+    "basicHash": "",
+    "recaptchaKey": "",
+    "fbRedirectUrl": "",
+    "fbClientId": "",
+    "gaId": "",
+    "gaDebugMode": false
+}
