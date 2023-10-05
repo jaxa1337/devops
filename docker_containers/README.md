@@ -166,3 +166,8 @@ ___
 1. __Nginx__ 
     - start: `docker compose -f ./nginx/docker-compose.yml up -d --remove-orphans --no-deps`
     - stop: `docker compose -f ./nginx/docker-compose.yml down`
+
+___
+
+1. __Grafana Agent__
+    - start: `docker compoose -f ./grafana_agent/docker-compose.yml up -d --remove-orphans --no-deps`

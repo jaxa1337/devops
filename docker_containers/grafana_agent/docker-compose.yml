@@ -1,0 +1,9 @@
+version: '3.9'
+
+services:
+  agent:
+    image: grafana/agent:main
+    platform: linux/amd64
+    env_file: .env
+    volumes:
+      - ./config.yaml:/etc/agent/agent.yaml
