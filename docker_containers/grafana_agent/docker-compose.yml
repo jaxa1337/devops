@@ -7,3 +7,6 @@ services:
     env_file: .env
     volumes:
       - ./config.yaml:/etc/agent/agent.yaml
+      - type: npipe
+        source: \\.\pipe\docker_engine
+        target: \\.\pipe\docker_engine

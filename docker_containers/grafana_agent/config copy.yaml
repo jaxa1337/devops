@@ -48,6 +48,7 @@ logs:
     - job_name: integrations/docker
       docker_sd_configs:
         - host: unix:///var/run/docker.sock
+        #- host: npipe:////./pipe/docker_engine #on windows
           refresh_interval: 5s
       relabel_configs:
       - action: replace
