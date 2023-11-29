@@ -19,3 +19,8 @@ docker_containers/monitoring/docker_stats/db_stats
 #==== ENV ====
 *.env
 *config.yaml
+
+#==== Terraform ====
+*.terraform
+*.terraform.lock.hcl
+*terraform.tfstate*
