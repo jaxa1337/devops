@@ -7,3 +7,4 @@ resource "aws_key_pair" "jakub_kabat" {
     "encryption" = "ecdsa"
   }
 }
+
